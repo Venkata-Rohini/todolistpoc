@@ -29,7 +29,8 @@ await mongoose.connect("mongodb+srv://admin:admin@cluster0.ksfyq.mongodb.net/TOD
     useNewUrlParser:true
 })      
 
-console.log("mongoose connected......");
-app.listen(4000,()=>console.log("hello server 4000"))
+console.log(process.env.PORT)
+
+app.listen(process.env.PORT || 5000,()=>console.log("hello server ${process.env.PORT }"))
 }
 startServer();
