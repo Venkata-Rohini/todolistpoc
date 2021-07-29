@@ -14,7 +14,7 @@ const resolvers = {
   },
   Mutation: {
     createPost: async (parent, args, context, info) => {
-      const { title, description } = args.post;
+      const { title, description } = args;
       const post = new Post({ title, description });
       console.log(post);
       await post.save();

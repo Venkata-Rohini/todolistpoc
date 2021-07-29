@@ -20,7 +20,7 @@ description:String
 
 type Mutation
 {
-    createPost(post: PostInput ):Post
+    createPost(title:String,description:String):Post
     getPostId(id:String):Post
     deletePost(id:String):String
     updatePost(id:String,post:PostInput):Post
