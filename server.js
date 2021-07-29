@@ -24,7 +24,7 @@ res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Ty
 res.send('hello express apollo server');
 });
 
-await mongoose.connect("mongodb+srv://admin:admin@cluster0.ksfyq.mongodb.net/TODOLIST?retryWrites=true",{
+await mongoose.connect("mongodb+srv://admin:admin@cluster0.ksfyq.mongodb.net/TODOLIST?retryWrites=true&w=majority",{
     useUnifiedTopology:true,
     useNewUrlParser:true
 })      
