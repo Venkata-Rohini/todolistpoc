@@ -1,31 +1,29 @@
 const {gql} = require('apollo-server-express');
 const typeDefs = gql`
 
-type Post{
+type Task{
     id:ID
-    title:String,
-    description:String
+    todotask:String,
+    done:Boolean
 }
 type Query {
-    hello:String,
-    getAllPosts:[Post],
-    getPostById(id:String):Post
+    getAllToDoTask:[Task],
+    getTaskById(id:String):Task
 }
 
-input PostInput
+input Tasknput
 {
-title:String,
-description:String
+    todotask:String,
+    done:Boolean
 }
 
 type Mutation
 {
-    createPost(title:String,description:String):Post
-    getPostId(id:String):Post
-    deletePost(id:String):String
-    updatePost(id:String,post:PostInput):Post
+    createTask(task:Tasknput):Task
+    deleteTask(id:String):Boolean
+    updateTask(id:String,task:Tasknput):Task
+    deleteAllTask:Boolean
 }
 `;
-
 
 module.exports = typeDefs;      

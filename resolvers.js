@@ -1,38 +1,38 @@
-const Post = require("./models/Post.model");
+const Task = require("./models/Task.model");
 const resolvers = {
   Query: {
-    hello: () => {
-      return "hello working GQL";
-    },
 
-    getAllPosts: async () => {
-      return await Post.find();
+    getAllToDoTask: async () => {
+      return await Task.find();
     },
-    getPostById: async (parent, { id }, context, info) => {
-      return await Post.findById(id);
+    getTaskById: async (parent, { id }, context, info) => {
+      return await Task.findById(id);
     }
   },
   Mutation: {
-    createPost: async (parent, args, context, info) => {
-      const { title, description } = args;
-      const post = new Post({ title, description });
-      console.log(post);
-      await post.save();
-      return post;
+    createTask: async (parent, args, context, info) => {
+      const { todotask, done } = args.task;
+      const task = new Task({ todotask, done });
+      await task.save();
+      return task;
     },
-    deletePost: async (parent, { id }, context, info) => {
-      await Post.findByIdAndDelete(id);
-      return "ok";
+    deleteTask: async (parent, { id }, context, info) => {
+      await Task.findByIdAndDelete(id);
+      return true;
     },
-    updatePost: async (parent, args, context, info) => {
-      const { id } = args;
-      const { title, description } = args.post;
-      const post = await Post.findByIdAndUpdate(
+    deleteAllTask:async (parent, args, context, info) => {
+      await Task.remove();
+      return true;
+    },
+    updateTask: async (parent, args, context, info) => {
+      const { id } = args.id;
+      const { todotask, done } = args.task;
+      const task = await Task.findByIdAndUpdate(
         id,
-        { title, description },
+        { todotask, done },
         { new: true }
       );
-      return post;
+      return task;
     }
   }
 };
