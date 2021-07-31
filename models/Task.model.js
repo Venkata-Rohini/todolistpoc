@@ -5,12 +5,11 @@ const Taskchema = new mongoose.Schema(
         todotask :
         {
             type:String,
-            required:true,
         },
         done :
         {
             type:Boolean,
-
+            default:false
         },
     }
 );

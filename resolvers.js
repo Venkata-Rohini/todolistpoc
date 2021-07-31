@@ -25,10 +25,10 @@ const resolvers = {
       return true;
     },
     updateTask: async (parent, args, context, info) => {
-      const { id } = args.id;
+
       const { todotask, done } = args.task;
       const task = await Task.findByIdAndUpdate(
-        id,
+        args.id,
         { todotask, done },
         { new: true }
       );
